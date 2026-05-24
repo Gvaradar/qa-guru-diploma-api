@@ -2,6 +2,7 @@ import allure
 from jsonschema import validate
 from api.client import ApiClient
 from api.schemas import product_schema, products_list_schema
+from api.schemas import product_schema, products_list_schema, product_request_schema
 
 
 @allure.epic('API тестирование')
@@ -40,6 +41,16 @@ class TestProductsAPI:
             "category": "electronic",
             "image": "https://via.placeholder.com/300"
         }
+        # Валидация request перед отправкой
+        validate(instance=new_product, schema=product_request_schema)
+
+        response = api_client.post('/products', json=new_product)
+
+        assert response.status_code == 201
+        created = response.json()
+        assert created['title'] == new_product['title']
+        assert created['price'] == new_product['price']
+        assert 'id' in created
 
         response = api_client.post('/products', json=new_product)
 
