@@ -10,22 +10,14 @@ class TestPostProduct:
     @allure.story('Создание продукта')
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.tag('smoke', 'positive')
-    def test_create_product(self, api_client):
-        new_product = {
-            "title": "Test Product",
-            "price": 99.99,
-            "description": "This is a test product for diploma",
-            "category": "electronic",
-            "image": "https://via.placeholder.com/300"
-        }
-
-        response = api_client.post('/products', json=new_product)
+    def test_create_product(self, api_client, sample_product):
+        response = api_client.post('/products', json=sample_product)
 
         assert response.status_code == 200
 
         created = response.json()
-        assert created['title'] == new_product['title']
-        assert created['price'] == new_product['price']
+        assert created['title'] == sample_product['title']
+        assert created['price'] == sample_product['price']
         assert 'id' in created
 
         validate(instance=created, schema=product_request_schema)
