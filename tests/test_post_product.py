@@ -13,7 +13,7 @@ class TestPostProduct:
     @allure.tag('smoke', 'positive')
     def test_create_product(self, api_client, sample_product):
         response = api_client.post('/products', json=sample_product)
-        assert_status_code(response)
+        assert_status_code(response, 201)
 
         created = response.json()
         assert created['title'] == sample_product['title']
