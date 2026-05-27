@@ -1,6 +1,7 @@
 import allure
 from jsonschema import validate
 from api.schemas import product_request_schema
+from api.helpers import assert_status_code
 
 
 @allure.epic('API тестирование')
@@ -12,8 +13,7 @@ class TestPostProduct:
     @allure.tag('smoke', 'positive')
     def test_create_product(self, api_client, sample_product):
         response = api_client.post('/products', json=sample_product)
-
-        assert response.status_code == 200
+        assert_status_code(response)
 
         created = response.json()
         assert created['title'] == sample_product['title']

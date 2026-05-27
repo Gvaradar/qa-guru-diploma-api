@@ -1,4 +1,5 @@
 import allure
+from api.helpers import assert_status_code
 
 
 @allure.epic('API тестирование')
@@ -9,8 +10,7 @@ class TestDeleteProduct:
     @allure.severity(allure.severity_level.NORMAL)
     def test_delete_product(self, api_client):
         response = api_client.delete('/products/1')
-
-        assert response.status_code == 200
+        assert_status_code(response)
 
         result = response.json()
         assert result == {}

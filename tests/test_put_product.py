@@ -1,6 +1,7 @@
 import allure
 from jsonschema import validate
 from api.schemas import product_schema
+from api.helpers import assert_status_code
 
 
 @allure.epic('API тестирование')
@@ -20,8 +21,7 @@ class TestPutProduct:
         }
 
         response = api_client.put('/products/1', json=updated_data)
-
-        assert response.status_code == 200
+        assert_status_code(response)
 
         result = response.json()
         assert result['title'] == "Updated Backpack"
