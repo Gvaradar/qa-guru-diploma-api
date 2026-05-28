@@ -26,6 +26,10 @@ pytest tests/test_api_products.py -v --alluredir=allure_results
 ### 4. Посмотреть Allure отчёт
 allure serve allure_results
 
+### 5. Настройка
+
+Создайте файл `.env` в корне проекта и добавьте:
+
 ## Тесты
 
 | Метод | Эндпоинт | Описание |
