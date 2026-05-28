@@ -7,6 +7,9 @@ def attach_request(method: str, url: str, body: dict = None):
             allure.attach(str(body), name="Request Body", attachment_type=allure.attachment_type.JSON)
 
 
-def attach_response(status_code: int, body):
-    allure.attach(str(status_code), name="Response Status", attachment_type=allure.attachment_type.TEXT)
-    allure.attach(str(body), name="Response Body", attachment_type=allure.attachment_type.JSON)
+def attach_response(status_code, body):
+    allure.attach(str(status_code), name="Response Status Code", attachment_type=allure.attachment_type.TEXT)
+    try:
+        allure.attach(body, name="Response Body", attachment_type=allure.attachment_type.JSON)
+    except:
+        allure.attach(str(body), name="Response Body (raw)", attachment_type=allure.attachment_type.TEXT)
