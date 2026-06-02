@@ -8,7 +8,7 @@ load_dotenv()
 
 @pytest.fixture(scope='session')
 def api_client():
-    base_url = os.getenv('API_BASE_URL', 'https://reqres.in/api')
+    base_url = os.getenv('API_BASE_URL')
     return ApiClient(base_url)
 
 
@@ -19,5 +19,17 @@ def sample_product():
         "price": 99.99,
         "description": "This is a test product for diploma",
         "category": "electronic",
+        "image": "https://via.placeholder.com/300"
+    }
+
+
+@pytest.fixture
+def updated_product_data():
+    return {
+        "id": 1,
+        "title": "Updated Backpack",
+        "price": 129.95,
+        "description": "Updated description",
+        "category": "men's clothing",
         "image": "https://via.placeholder.com/300"
     }
