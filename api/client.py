@@ -6,6 +6,9 @@ class ApiClient:
     def __init__(self, base_url: str):
         self.base_url = base_url
         self.session = requests.Session()
+        self.session.headers.update({
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        })
 
     def _log_response(self, response):
         attach_response(response.status_code, response.text)
