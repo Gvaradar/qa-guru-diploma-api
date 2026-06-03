@@ -25,14 +25,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: List files before tests (debug)
-      run: ls -la
-
     - name: Run tests
+      env:
+        API_BASE_URL: ${{ secrets.API_BASE_URL }}
       run: pytest tests/ -v --tb=short --alluredir=allure_results
-
-    - name: List files after tests (debug)
-      run: ls -la allure_results
 
     - name: Upload Allure results
       uses: actions/upload-artifact@v4
