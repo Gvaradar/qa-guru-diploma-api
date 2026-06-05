@@ -1,5 +1,5 @@
-import requests
 import allure
+import requests
 
 
 class ApiClient:
@@ -16,7 +16,8 @@ class ApiClient:
                 allure.attach(str(body), name="Request Body", attachment_type=allure.attachment_type.JSON)
 
     def _log_response(self, response):
-        allure.attach(str(response.status_code), name="Response Status Code", attachment_type=allure.attachment_type.TEXT)
+        allure.attach(str(response.status_code), name="Response Status Code",
+                      attachment_type=allure.attachment_type.TEXT)
         try:
             if response.text:
                 allure.attach(response.json(), name="Response Body", attachment_type=allure.attachment_type.JSON)

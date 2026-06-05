@@ -1,5 +1,6 @@
 import allure
 from jsonschema import validate
+
 from api.schemas import product_request_schema
 
 

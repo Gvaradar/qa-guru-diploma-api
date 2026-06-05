@@ -1,6 +1,8 @@
 import os
+
 import pytest
 from dotenv import load_dotenv
+
 from api.client import ApiClient
 from models.product import Product, UpdatedProduct
 
