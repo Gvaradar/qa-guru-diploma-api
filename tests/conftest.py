@@ -1,10 +1,8 @@
 import os
-
 import pytest
 from dotenv import load_dotenv
-
 from api.client import ApiClient
-from models.product import Product, UpdatedProduct
+from models.product import Product
 
 load_dotenv()
 
@@ -28,7 +26,7 @@ def sample_product():
 
 @pytest.fixture
 def updated_product_data():
-    return UpdatedProduct(
+    return Product(
         id=1,
         title="Updated Backpack",
         price=129.95,
